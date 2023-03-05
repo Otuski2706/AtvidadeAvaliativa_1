@@ -14,9 +14,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private EditText inputEditText;
     private Button converterButtonCelcius;
+    private Button converterButtonFahrenheit;
     private TextView outputTextView;
 
     CelciusStrategy C = new CelciusStrategy();
+    FahrenheitStrategy F = new FahrenheitStrategy();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +29,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         converterButtonCelcius = findViewById(R.id.button_converter_celcius);
 
+        converterButtonFahrenheit = findViewById(R.id.button_converter_far);
+
         outputTextView = findViewById(R.id.textview_value_converted);
 
         converterButtonCelcius.setOnClickListener(this);
+        converterButtonFahrenheit.setOnClickListener(this);
     }
 
     @Override
@@ -38,6 +43,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             double value = getValue();
             double temp = C.getConversion(value);
             outputTextView.setText(String.format("%.2f C", temp));
+        }
+        if(view == converterButtonFahrenheit){
+            double value = getValue();
+            double temp = F.getConversion(value);
+            outputTextView.setText(String.format("%.2f F", temp));
         }
 
     }
