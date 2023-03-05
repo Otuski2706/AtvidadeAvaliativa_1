@@ -15,10 +15,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText inputEditText;
     private Button converterButtonCelcius;
     private Button converterButtonFahrenheit;
+    private Button converterButtonKelvinCel;
+    private Button converterButtonKelvinFah;
     private TextView outputTextView;
 
     CelciusStrategy C = new CelciusStrategy();
     FahrenheitStrategy F = new FahrenheitStrategy();
+    KelvinStrategy K = new KelvinStrategy();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +34,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         converterButtonFahrenheit = findViewById(R.id.button_converter_far);
 
+        converterButtonKelvinCel = findViewById(R.id.button_converter_kelvin_cel);
+
+        converterButtonKelvinFah = findViewById(R.id.button_converter_kelvin_fah);
+
         outputTextView = findViewById(R.id.textview_value_converted);
 
         converterButtonCelcius.setOnClickListener(this);
         converterButtonFahrenheit.setOnClickListener(this);
+        converterButtonKelvinCel.setOnClickListener(this);
+        converterButtonKelvinFah.setOnClickListener(this);
     }
 
     @Override
@@ -50,6 +59,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             outputTextView.setText(String.format("%.2f F", temp));
         }
 
+        if(view == converterButtonKelvinCel){
+            double value = getValue();
+            double temp = K.getKelvinCelConvertion(value);
+            outputTextView.setText(String.format("%.2f Kelvin", temp));
+        }
+
+        if(view == converterButtonKelvinFah){
+            double value = getValue();
+            double temp = K.getKelvinFahConvertion(value);
+            outputTextView.setText(String.format("%.2f Kelvin", temp));
+        }
     }
 
     private double getValue(){
